@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2316250625161404410
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6801550006037045841}
+  - component: {fileID: 4074277342149054211}
+  - component: {fileID: 4483372090838661333}
+  m_Layer: 0
+  m_Name: CakeBurst
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6801550006037045841
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2316250625161404410}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4074277342149054211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2316250625161404410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f161042c69d4575a48e86acc8c68d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DebrisBurst
+  piecePrefabs:
+  - {fileID: 5549420955424247100, guid: 7b92c99f426ac4f5d82c62d7a1379362, type: 3}
+  countRange: {x: 4, y: 6}
+  spreadAngle: 180
+  decalPrefab: {fileID: 1499406768887431549, guid: 34f3a249fcf174067a35698c33ff2d31, type: 3}
+--- !u!114 &4483372090838661333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2316250625161404410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14abd407a742e40539cfe9db37b9b8e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PuffCloud
+  puffSprite: {fileID: 21300000, guid: 7792963af2d27492c88ea8a1871ba54c, type: 3}
+  colors:
+  - {r: 0.88, g: 0.28, b: 0.28, a: 1}
+  - {r: 0.37, g: 0.83, b: 0.37, a: 1}
+  - {r: 0.31, g: 0.56, b: 0.88, a: 1}
+  count: 10
+  speed: 2
+  scaleRange: {x: 0.4, y: 0.8}
+  lifetime: 0.7
+  decalPrefab: {fileID: 0}

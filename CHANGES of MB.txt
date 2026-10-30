@@ -1,0 +1,233 @@
+MAGIC? BUCKSHOT! (formerly "No More Kvass") - CHANGES FROM THE DESIGN DOCUMENT
+==============================================================================
+BIGGEST CHANGE: SETTING AND TONE
+- The design doc described a gritty Eastern European setting. I dropped
+  that entirely and re-themed the game as a high-fantasy parody: Skeeter,
+  a hillbilly whose moonshine still blew open a portal, watches a fantasy
+  kingdom's Royal Guard confiscate his moonshine as "witchcraft". He follows
+  them through with Pa's pump shotgun and invades the kingdom to
+  get it back. The fish-out-of-water joke (a shotgun against swords and
+  spells) gave the game a stronger identity than the original setting and
+  more room for humour.
+- The three level layouts were planned as text grids first (walls, enemies,
+  props), then built as scenes.
+- Art direction changed from "muted, gritty" to chunky low-res pixel art in
+  the spirit of Risk of Rain 1: ~16 px characters, one limited palette per
+  level, pixel-perfect camera, bright colours reserved for danger.
+- The pistol became a pump-action 12 gauge modeled on an MP-133: 4+1
+  shells, 12 pellets in a wide fan. Every shot is followed by racking the
+  pump (sound + the spent hull flies out), so the fire rate is set by the
+  pump cycle. Reloading loads one shell at a time with the counter ticking
+  up, and pressing fire mid-reload stops loading and shoots with whatever
+  is already in the tube, like a real tube-fed shotgun. This replaces the
+  12-round, 1.2 s magazine reload from the design doc.
+  The gun script still supports a pistol via Inspector settings.
+- Balance flipped to a power fantasy. The original doc had an even,
+  one-hit-each fight; now the player is deliberately overpowered:
+  * enemies have health instead of dying to any hit (knights 6, wizards
+    3). Shotgun pellets have damage falloff (3 up close, 2 mid range, 1
+    far), so one blast kills every knight inside the spread cone at close
+    to mid range, and only far-away targets need a second blast. Non-lethal hits flash the enemy, shove it back and
+    interrupt a knight's sword swing, so the shotgun can save you mid-
+    wind-up;
+  * killed enemies are thrown back by the blast and skid away, leaving a
+    few smears of blood (kept small so it's punchy rather than brutal);
+  * wizards' magic bolts are slow and big enough to sidestep on reaction.
+  The challenge comes from numbers instead of enemy strength, so enemy
+  counts went from 3 / 5 / 7 to 9 / 14 / 29, and wizard bolts were sped up
+  slightly (still dodgeable on reaction).
+  The player still dies in one hit, so getting surrounded is still deadly.
+- New weapon not in the design doc: the Gatling Staff, found on level 2.
+  It's a messy bundle of confiscated wizard staffs, uneven lengths,
+  wrapped in crooked duct tape. Skeeter holds it at the hip like a chainsaw.
+  It's full-auto magic that spins up from slow to 20 shots per second
+  while you hold the trigger, with an 80-bolt charge and a slower reload.
+  Weapons are now data assets (ScriptableObjects), each remembering its
+  own loaded ammo; Q or 1/2 swaps between them.
+- Levels renamed to follow the invasion: Factory -> The Castle Gate,
+  Interchange (shopping complex) -> The Royal Market, Lighthouse -> The
+  Wizard's Tower. The Market and the Tower were later re-laid out (see
+  Market Stands and The King's Feast below).
+- Two enemy types instead of one (plus the King on the last level), all
+  sharing the same AI script:
+  Knights charge in and attack with a sword. Each swing is telegraphed
+  by a red wind-up during which the knight plants its feet and locks its
+  facing, so the player can shoot it first or step out of the arc.
+  Wizards keep their distance and fire slow, dodgeable magic bolts.
+  Mixing the two forces the player to handle a rush up close while
+  dodging fire from range, which suits the short-range shotgun.
+- Level exits are magic portals.
+
+KEPT AS DESIGNED
+- Top-down 2D shooter, WASD movement, mouse aim, left click to fire.
+- Limited magazine, unlimited reserve ammo, reload on R (now 5 shotgun
+  shells loaded one at a time instead of 12 pistol rounds, see above).
+- One hit kills the player. Space restarts after death. (Enemies now have
+  health, see above.)
+- Three levels in the same order (layouts and enemy counts changed, see
+  above).
+- Title screen, on-screen ammo counter, death and level-clear feedback, victory screen.
+- Walls block movement and bullets.
+- No background music; the soundscape is effects only (see Sound below).
+
+CHANGES AND ADDITIONS
+
+Gameplay
+1. Gunshot awareness went from "possible" to a core mechanic. Every shot
+   (player or enemy) emits a noise radius; enemies who hear it walk to the
+   sound. Walls muffle the sound, so shooting inside a closed room is
+   quieter than shooting in a corridor.
+2. Enemies got a full state machine instead of "detect, move, fire":
+   idle / patrol -> investigate -> chase -> search -> return to post.
+3. Enemies have a vision cone, so players can sneak up behind them. Anyone
+   right next to an enemy is noticed from any direction.
+4. Enemies use A* grid pathfinding to move around walls and through doors
+   when they chase or investigate, instead of walking straight into walls.
+5. Enemies have a short reaction delay before their first shot so a skilled
+   player can always shoot first. Re-spotting after peeking a corner has a
+   shorter delay.
+6. No auto-reload: firing on an empty magazine gives a dry click and a
+   "RELOAD [R]" prompt, which makes reloading a deliberate decision.
+7. Breakable props: barrels, potion shelves and mana crystals shatter when
+   shot, leave debris or a glowing puddle, and make noise that draws
+   enemies. Shooting a potion shelf to lure a knight away is a valid tactic.
+8. Level exit: after the last enemy dies, an exit zone opens and the player
+   walks out to finish the level (instead of the level ending instantly).
+9. Enemies cannot shoot each other (no friendly fire).
+
+Feedback / Feel
+10. "!" icon when an enemy spots you, "?" icon when it hears something.
+11. Hit-stop (a tiny freeze) on every kill, screen shake on shots and deaths.
+12. Camera leans toward the mouse cursor so you can see where you're aiming.
+13. Ejected shell casings, muzzle flashes, wall sparks, and blood/debris
+    decals that stay on the floor for the rest of the level.
+14. Reload progress bar; ammo counter turns red on your last shell.
+
+Presentation / Humour
+- Ending cutscene (not in the doc): after the Wizard's Tower, Skeeter wakes
+  up face-down in the grass by his trailer and red pickup, panics that
+  someone stole his moonshine... then realises he drank it all. Was the
+  kingdom ever real? It's skippable, then the victory stats are shown.
+- The ammo counter is a row of mismatched shotgun shells (a worn one, a
+  dented one, one with a doodled face) that go dark as you fire. The Gatling
+  Staff shows a number instead.
+- Recoil and racking: the gun kicks back on every shot and again when the
+  pump is racked, and spent hulls fly out to the right and bounce.
+- Shotgun blasts shove Skeeter backwards a step, with a muzzle flash almost
+  twice the size and a split-second warm white flash over the screen. The
+  Gatling Staff only nudges him back gently while it fires.
+- Heavier screen shake on shotgun blasts: a hard jolt backwards along the
+  aim plus a rumble that fades out, instead of a flat jitter.
+- Removed the yellow reload bar. The shotgun's reload is shown by the shells
+  filling back in one by one; the Gatling Staff shows "RELOADING...".
+- The weapon name ("PA'S PUMP SHOTGUN") sits above the shells in the Jersey 10
+  pixel font with a drop shadow.
+- The rest of the HUD (enemy count, hints, level title, death and level-clear
+  messages) now uses Jersey 10 with a hard drop shadow. "YOU HAVE FALLEN" is
+  red, "QUEST COMPLETE" gold. Skeeter's quips stay in
+  plain yellow Jersey 10 (tried another font, the original read better).
+- Gatling Staff ammo is shown as a belt of 40 little bolt icons (ice, arcane,
+  star, matching the bolts it fires); each icon is 2 rounds and goes dark as
+  they're spent.
+
+NEW: SMOKE BREAK (Max Payne 3 style bullet time)
+- Shift or right click: Skeeter puts a cigarette in his mouth and time
+  eases down to 30% over a quarter second, with a white pop, a deep whoosh
+  and a heartbeat thumping under everything. Every sound drops in pitch.
+- Black cinematic letterbox bars slide in, the picture gets a magenta wash
+  with deep blue edges, and Skeeter leaves blue, red, green and pink
+  afterimages, like Max Payne 3's colour bleed.
+- Skeeter still walks at full speed and his gun runs at 70% of normal
+  speed (it keeps its own clock), so he out-guns the slowed world while his
+  pellets streak through the air with visible trails.
+- Every hit during bullet time sprays a cone of blood mist out the far side
+  that hangs in the air; killing shots get a big burst and an extra splat.
+- One cigarette, shown bottom right. It burns for about 5 real seconds, can
+  be put out early to save the rest, and slowly grows back (~14 s).
+- Works with the kill hit-stop: after the freeze, time returns to slow
+  motion instead of normal speed while he's smoking.
+
+NEW: THE KING'S FEAST (start of Level 3)
+- The tower courtyard and moat were replaced by a feast hall. Skeeter starts
+  in a small stone entry facing a huge iron-banded double door. One shot
+  blows it apart (planks fly, deep boom, camera shake) and a title card
+  reads "THE KING'S FEAST".
+- Inside: a long banquet table with ten knights and wizards seated on
+  chairs, and the King himself on a gold throne at the head of the table.
+  The guests sit facing the table and don't move until they can see
+  Skeeter, then the whole feast jumps up at once.
+- The King is a new enemy: crown, ermine collar, red robe, goblet. He casts
+  like a wizard but takes 14 hits and fires faster.
+- Everything on the table breaks: roast turkey (drumsticks fly), goblets of
+  wine (red splash), fruit bowls and berry pies. Chairs and the throne
+  splinter too. The table itself is solid to walk into but bullets and
+  sight pass over it, so you can shoot across it.
+- The confiscated moonshine sits on a side table in the corner.
+- The hall is packed with breakables: two more food-laden side tables with
+  guests, eight candelabras (candles go flying), six suits of armour on
+  stands (helmet and sword clatter off), wine casks (planks and a red
+  flood), two treasure chests (a spray of gold coins, with its own coin
+  sound), two pink celebration cakes (frosting cloud and cherries) and two
+  ice sculptures of the King (shatter into shards and frost).
+
+GATLING STAFF: HEAVIER AND HOTTER
+- Every bolt now does 2 damage (the gold star 3): knights drop in ~3 bolts.
+- Each bolt leaves a glowing trail in its colour and bursts into a little
+  coloured poof where it hits.
+- The barrel heats up as you fire and smokes in cyan, purple and gold,
+  and keeps smoking for a few seconds after you let go.
+- It's heavy: Skeeter walks at 70% speed while firing, gets shoved back
+  steadily, and the camera rumbles and leans back. Bigger muzzle flash and
+  a faint strobe.
+
+
+NEW: MARKET STANDS (Level 2)
+- Three new breakable two-tile stands: fruit (crates smash, fruit rolls away
+  and leaves a squashed smear), sword racks (three swords spin off and skid
+  across the floor) and potion stands (burst into a cloud of coloured smoke
+  and leave a puddle). Each has its own synthesized sound
+  (Tools/make_sounds_extra.py).
+- The Royal Market was re-laid out as aisles: four rows of stands with an
+  open avenue down the middle. Five knights are AMBUSHERS crouched behind the
+  stands (darker, in the stall's shadow). They ignore gunfire and wait until
+  Skeeter walks within ~4.5 tiles in plain view, or one of them is shot, then
+  they all jump out at once (each one shouts to wake hidden knights within
+  7 tiles). Two more lie in wait in the library.
+- The back shop is an apothecary full of potion stands.
+- The staff room is now a LIBRARY: bookshelves ring the Gatling Staff, which
+  rests on a stone pedestal. Like an enchanting table, little rune letters
+  and sparkles lift off the nearby shelves and swirl into the staff
+  (Assets/Scripts/Effects/EnchantGlyphs.cs). Shot bookshelves burst into
+  fluttering pages.
+
+Sound
+17. Pitch randomisation on every effect so repeated shots/footsteps don't
+    sound identical. Separate sounds for: player and enemy gunshots, dry
+    fire, magazine out/in, ricochets, shell drops, footsteps, enemy alert
+    and confused barks, deaths, prop breaking, level clear, exit opening.
+    Knights clank and grunt during their wind-up, so you can hear an
+    attack coming, and wizards' spells zap, so you can tell their fire
+    from your own gun.
+
+Cut / not done
+- Background music: left out on purpose, per the assignment guidance. Short
+  banjo stings play only on level start, death, level clear and victory, so
+  they never mask gameplay sounds.
+
+Developer tools (not part of normal play)
+- F1 skip level, F2 god mode, F3 restart level, F4 kill all enemies. These
+  only work in the Unity Editor and Development builds and were used for
+  testing and recording the video.
+
+ASSET CREDITS
+- All sprites (characters, tiles, props, effects, UI icons) were generated
+  pixel by pixel by Tools/make_sprites.py, written with AI assistance and
+  reviewed and adjusted by me.
+- All sound effects were synthesized by Tools/make_sounds.py and
+  Tools/make_sounds_extra.py (noise,
+  oscillators, filters, and a Karplus-Strong plucked string for the banjo
+  stings). No third-party audio.
+- Font: Jersey 10 (The Soft Type Project Authors), from Google Fonts under the
+  SIL Open Font License; the licence file is in Assets/Fonts.
+
+Disclosure: Ai was used lightly such as creating audio that fits with my vision or adding extras as explained in the video

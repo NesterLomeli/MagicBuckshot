@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28dd44ebd6a4f4a55871f8bdf3c387a0, type: 3}
+  m_Name: GatlingStaff
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  displayName: The Gatling Staff
+  playerSprite: {fileID: 21300000, guid: c5ba7c1028e5040918ff49ed06ce337e, type: 3}
+  projectilePrefab: {fileID: 4350821319137342867, guid: 54f52af1412414bd7af65ad2c38d7cb0, type: 3}
+  alternatingProjectiles:
+  - {fileID: 4350821319137342867, guid: 54f52af1412414bd7af65ad2c38d7cb0, type: 3}
+  - {fileID: 3534851330341533506, guid: 6c3c4b5f20b5c40ce83a903d2727639f, type: 3}
+  - {fileID: 771262734148030656, guid: 2d8aee9bccd6f4238863bcf56a264212, type: 3}
+  fullAuto: 1
+  fireCooldown: 0.05
+  pelletsPerShot: 1
+  spreadAngle: 10
+  pelletJitter: 0
+  spinUpTime: 0.6
+  spinUpStartSlowdown: 4
+  pumpAction: 0
+  pumpDelay: 0.2
+  pumpClips: []
+  magazineSize: 80
+  reloadTime: 1.8
+  loadOneAtATime: 0
+  shellInsertTime: 0.42
+  shellInsertClips: []
+  noiseRadius: 14
+  shakeStrength: 0.11
+  muzzleFlashColor: {r: 0.75, g: 0.55, b: 1, a: 1}
+  heatPerShot: 0.04
+  heatDecay: 0.3
+  smokeColors:
+  - {r: 0.44, g: 0.88, b: 1, a: 1}
+  - {r: 0.85, g: 0.7, b: 1, a: 1}
+  - {r: 1, g: 0.9, b: 0.5, a: 1}
+  firingMoveMultiplier: 0.7
+  muzzleFlashScale: 1.5
+  selfKnockback: 1.4
+  screenFlash: 0.025
+  shellCasingPrefab: {fileID: 0}
+  ejectShellsOnReload: 1
+  shotClips:
+  - {fileID: 8300000, guid: e67723f04bee54d1c83b89fa70a86a27, type: 3}
+  - {fileID: 8300000, guid: c8802d7227df3475a8520f15993e2bfe, type: 3}
+  - {fileID: 8300000, guid: 6b0a565e36ca3482ba593ff8f3c12193, type: 3}
+  dryFireClip: {fileID: 8300000, guid: 924ee8f120ceb4618bf70ed63b9dce41, type: 3}
+  reloadStartClip: {fileID: 8300000, guid: 2db7b88cc48b342949cb17a2284b1680, type: 3}
+  reloadEndClip: {fileID: 8300000, guid: 9461e749cc03e4e8cae63ea65fdf242e, type: 3}
+  equipClip: {fileID: 8300000, guid: b99b0b653fd36450ab807544394ab3fa, type: 3}

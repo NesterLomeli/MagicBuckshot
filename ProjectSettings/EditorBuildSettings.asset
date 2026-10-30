@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Title.unity
+    guid: 6f3e6bb6185d14cae80d87e95a912ea5
+  - enabled: 1
+    path: Assets/Scenes/01_Gate.unity
+    guid: 1eceaba2f84c143b2a1394a32888818f
+  - enabled: 1
+    path: Assets/Scenes/02_Market.unity
+    guid: aec548efb532149b3a6afa15148967a3
+  - enabled: 1
+    path: Assets/Scenes/03_Tower.unity
+    guid: ed6638dcbd7204d4fa2b35d5473887f6
+  - enabled: 1
+    path: Assets/Scenes/Ending.unity
+    guid: 9d2d91899ee1e4a2896257023594c6b2
+  - enabled: 1
+    path: Assets/Scenes/Victory.unity
+    guid: 70fcad683ecaf4422b9e71e1621f4b9c
+  m_configObjects:
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

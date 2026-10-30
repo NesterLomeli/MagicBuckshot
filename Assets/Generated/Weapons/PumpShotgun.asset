@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28dd44ebd6a4f4a55871f8bdf3c387a0, type: 3}
+  m_Name: PumpShotgun
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  displayName: Pa's Pump Shotgun
+  playerSprite: {fileID: 21300000, guid: 8d501e76852f045bb8f26b005b1c8775, type: 3}
+  projectilePrefab: {fileID: 4871071804730435078, guid: 8dc02bda8b7c24df588fc5cd4ccb1a6c, type: 3}
+  alternatingProjectiles: []
+  fullAuto: 0
+  fireCooldown: 0.55
+  pelletsPerShot: 12
+  spreadAngle: 34
+  pelletJitter: 2
+  spinUpTime: 0
+  spinUpStartSlowdown: 4
+  pumpAction: 1
+  pumpDelay: 0.2
+  pumpClips:
+  - {fileID: 8300000, guid: 33bf54507b5124f25beaf3ca40425c08, type: 3}
+  - {fileID: 8300000, guid: 64eaeeebb2eb543a7b3f7323928de40a, type: 3}
+  magazineSize: 5
+  reloadTime: 0.9
+  loadOneAtATime: 1
+  shellInsertTime: 0.42
+  shellInsertClips:
+  - {fileID: 8300000, guid: 320a2ea6adb964442aea092dadf5e18c, type: 3}
+  - {fileID: 8300000, guid: e470a1f061c7f483cbab49360230d719, type: 3}
+  - {fileID: 8300000, guid: dede6966eb29c4700b62392ff8ba44ec, type: 3}
+  noiseRadius: 11
+  shakeStrength: 0.35
+  muzzleFlashColor: {r: 1, g: 1, b: 1, a: 1}
+  heatPerShot: 0
+  heatDecay: 0.35
+  smokeColors: []
+  firingMoveMultiplier: 1
+  muzzleFlashScale: 1.8
+  selfKnockback: 5
+  screenFlash: 0.22
+  shellCasingPrefab: {fileID: 1389911347415479890, guid: 4b9208515b54a4c9db328f864f733f25, type: 3}
+  ejectShellsOnReload: 0
+  shotClips:
+  - {fileID: 8300000, guid: 3fbea567844c245a094c3356b374726d, type: 3}
+  - {fileID: 8300000, guid: 07840cc43b7a54980a4797bcd9a1fe00, type: 3}
+  - {fileID: 8300000, guid: 3bab9978d6137446397591ea19104b7b, type: 3}
+  dryFireClip: {fileID: 8300000, guid: 1c70d96a293af4594a49b4197d84f5e4, type: 3}
+  reloadStartClip: {fileID: 8300000, guid: b4dcc8f43c4a54aff9f945fdda08edde, type: 3}
+  reloadEndClip: {fileID: 0}
+  equipClip: {fileID: 8300000, guid: 0a9bb142add9f47498eac542ad90eb17, type: 3}
